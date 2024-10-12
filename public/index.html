@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Transcription Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"], input[type="file"], button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Transcribe Your Video</h1>
+        <form id="video-upload-form" action="/api/transcribe" method="POST" enctype="multipart/form-data">
+            <label for="file-upload">Upload a video file:</label>
+            <input type="file" id="file-upload" name="video" accept="video/*" required>
+
+            <label for="file-language">Language Code (optional):</label>
+            <input type="text" id="file-language" name="language" placeholder="e.g., en-US">
+
+            <button type="submit">Transcribe from File</button>
+        </form>
+
+        <form id="url-transcribe-form" action="/api/transcribe-url" method="POST" style="margin-top: 20px;">
+            <label for="video-url">Enter a video URL:</label>
+            <input type="text" id="video-url" name="url" placeholder="Enter video URL" required>
+        
+            <label for="url-language">Language Code (optional):</label>
+            <input type="text" id="url-language" name="language" placeholder="e.g., en-US">
+        
+            <button type="submit">Transcribe from URL</button>
+        </form>
+        
+
+        <p class="note">* Video file upload supports all video formats. You can also transcribe directly from a URL.</p>
+    </div>
+
+</body>
+</html>
